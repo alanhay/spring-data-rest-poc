@@ -16,11 +16,11 @@ import com.qikserve.hackdazespringdata.domain.repository.CustomerRepository;
 @Component
 public class CustomerDataGenerator extends AbstractBaseGenerator {
 
-	private String[] forenames = { "John", "Jack", "James", "Joe", "Alan", "Steven", "David", "Susan", "Karen",
-			"Emily" };
+	private String[] forenames = { "John", "Jack", "James", "Joe", "Alan", "Steven", "David", "Susan", "Karen", "Emily",
+			"Edna", "Stan", "Michael", "Jennifer" };
 
 	private String[] surnames = { "Jackson", "Smith", "Johnson", "Anderson", "Stevenson", "Kennedy", "Henderson",
-			"McDonald", "Davis", "Young" };
+			"McDonald", "Davis", "Young", "Jones", "Johnston", "Henshaw", "Davidson", "Davies" };
 
 	private String[] streetNames = { "Greenhill", "Montpelier", "Morningside", "Leith", "Bruntsfield", "Newington" };
 
