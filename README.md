@@ -2,7 +2,6 @@
 
 Sample project to demonstrate some Spring Data functionality.
 
-Create a local MySQL database named hack-daze-spring-data
 
 ```
 git clone git@bitbucket.org:qsengineers/hack-daze-spring-data.git
@@ -26,9 +25,12 @@ having to write any query methods.
 ##### Spring Data Web Integration and QueryDSL
 
 The Spring data web integration allows us to use this QueryDSL functionality in Controllers
-without us having to write any code.
+without us having to write any code. We can call the `/search` endpoint on our Customers Controller with any combination of parameters 
+(note on the following we do a 'like' look up on Surname via the customization in the `CustomerRepository` class).
 
-`Example`
+```
+http://localhost:8080/customers?surname=Ja&address.town=Edinburgh&address.town=Glasgow&sort=address.desc&sort=forename&page=1&size=10
+```
 
 ##### Exposing Model directly i.e. without DTO and associated mappings
 
@@ -41,7 +43,7 @@ to control  the JSON representation of the Entity. With such an approach then we
 representation without the duplicate DTO classes and associated data mappers.  
 
 ___
-### Functionaility on data-rest branch:
+### Functionality on data-rest branch:
 ___
 
 While the Spring Data project removes much of the boiler plate required at the repository level, we are still
@@ -61,10 +63,14 @@ http://localhost:8080/customers
 http://localhost:8080/customers/1/orders
 http://localhost:8080/orders/
 http://localhost:8080/products
-``
+```
 
-In addition to searching we also have automatically generated end-points for POST/PUT/PATCH/DELETE for each of our entities:
+In addition to searching we also have automatically generated end-points for POST/PUT/PATCH/DELETE for each of our entities.
 
+`attach postman collection`
 
+Some Notes on Spring Data Rest
 
-
+- HATEOS
+- Event Listeners
+etc.
