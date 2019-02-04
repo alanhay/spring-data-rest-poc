@@ -11,9 +11,9 @@ import com.qikserve.hackdazespringdata.domain.Customer;
 import com.qikserve.hackdazespringdata.domain.Order;
 import com.qikserve.hackdazespringdata.domain.OrderLine;
 import com.qikserve.hackdazespringdata.domain.Product;
-import com.qikserve.hackdazespringdata.domain.repository.CustomerRepository;
-import com.qikserve.hackdazespringdata.domain.repository.OrderRepository;
-import com.qikserve.hackdazespringdata.domain.repository.ProductRepository;
+import com.qikserve.hackdazespringdata.repository.CustomerRepository;
+import com.qikserve.hackdazespringdata.repository.OrderRepository;
+import com.qikserve.hackdazespringdata.repository.ProductRepository;
 
 @Component
 public class OrderDataGenerator {

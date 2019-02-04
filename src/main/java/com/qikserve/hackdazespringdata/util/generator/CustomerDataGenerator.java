@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.qikserve.hackdazespringdata.domain.Address;
 import com.qikserve.hackdazespringdata.domain.Customer;
-import com.qikserve.hackdazespringdata.domain.repository.CustomerRepository;
+import com.qikserve.hackdazespringdata.repository.CustomerRepository;
 
 @Component
 public class CustomerDataGenerator extends AbstractBaseGenerator {

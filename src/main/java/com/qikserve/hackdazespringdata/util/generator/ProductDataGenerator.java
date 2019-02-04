@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.qikserve.hackdazespringdata.domain.Product;
-import com.qikserve.hackdazespringdata.domain.repository.ProductRepository;
+import com.qikserve.hackdazespringdata.repository.ProductRepository;
 
 @Component
 public class ProductDataGenerator {
