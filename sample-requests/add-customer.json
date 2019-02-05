@@ -1,9 +1,12 @@
 {
 	"forename": "James",
 	"surname": "Kennedy",
-	"dateOfBirth": "1970-01-01",
+	"emailAddress": "james.kennedy@aol.com",
+	"password": "ghkkjhjkhkjhjkhjkh",
+	"dateOfBirth": "01/01/1970",
 	"address": {
-		"line1": "124 High Street",
+		"houseNumber": "124",
+		"line1": "High Street",
 		"town": "Falkirk",
 		"postCode": "FK1 1LP"
 	}

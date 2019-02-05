@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +40,9 @@ public class CustomerDataGenerator extends AbstractBaseGenerator {
 			customer.setForename(getRandomValue(forenames));
 			customer.setSurname(getRandomValue(surnames));
 			customer.setDateOfBirth(LocalDate.now().minusDays(RandomUtils.nextInt(5400, 15000)));
+			customer.setEmailAddress(StringUtils.join(customer.getForename(), ".", customer.getSurname(),
+					RandomUtils.nextInt(1000, 9999), "@test.com"));
+			customer.setPassword(RandomStringUtils.randomAlphanumeric(10));
 
 			Address address = new Address();
 			address.setHouseNumber(RandomStringUtils.randomNumeric(2));
