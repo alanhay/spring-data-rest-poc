@@ -15,7 +15,7 @@ public class DataGenerator {
 
 	@Autowired
 	private ProductDataGenerator productDataGenerator;
-	
+
 	@Autowired
 	private OrderDataGenerator orderDataGenerator;
 
