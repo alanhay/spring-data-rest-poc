@@ -15,7 +15,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>, Query
 
 	@Override
 	default void customize(QuerydslBindings bindings, QCustomer customer) {
-		bindings.bind(customer.surname).first(
-				(path, value) -> path.likeIgnoreCase(value + "%"));
+		bindings.bind(customer.surname).first((path, value) -> path.likeIgnoreCase(value + "%"));
+
+		bindings.bind(customer.lastOrderDate).first((path, value) -> path.goe(value));
 	}
 }

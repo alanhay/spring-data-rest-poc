@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 public class CustomerMixin {
 
+	// date formatting can probably be set globally
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	LocalDate dateOfBirth;
 
@@ -17,6 +19,10 @@ public class CustomerMixin {
 
 	@JsonProperty(access = Access.READ_ONLY)
 	int orderCount;
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonProperty(access = Access.READ_ONLY)
+	LocalDate lastOrderDate;
 
 	@JsonProperty(access = Access.READ_ONLY)
 	BigDecimal orderTotal;

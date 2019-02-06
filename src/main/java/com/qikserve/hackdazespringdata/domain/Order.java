@@ -1,6 +1,7 @@
 package com.qikserve.hackdazespringdata.domain;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,9 +28,11 @@ public class Order extends BaseEntity {
 	private LocalDateTime dateDispatched;
 
 	@ManyToOne
-	@JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "orders_to_csutomers_fk"))
+	@JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "orders_to_customers_fk"))
 	private Customer customer;
 
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "orders_to_order_lines_fk"))
 	private Set<OrderLine> orderLines;
@@ -37,7 +41,15 @@ public class Order extends BaseEntity {
 		orderLines = new HashSet<>();
 	}
 
+	public Set<OrderLine> getOrderLines() {
+		return Collections.unmodifiableSet(orderLines);
+	}
+
 	public void addOrderLine(OrderLine line) {
 		orderLines.add(line);
+	}
+
+	public void removeOrderLine(OrderLine orderLine) {
+		orderLines.remove(orderLine);
 	}
 }
