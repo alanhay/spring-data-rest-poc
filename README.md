@@ -9,68 +9,67 @@ cd ${clone_directory}
 mvn spring-boot:run
 ```
 
-___
-### Functionality on master Branch:
-___
-
-##### Spring Data and Query DSL
-
-While it easy to create queries in Spring Data via either derivation from the method name  
-or by explicitly specifying using the `@Query` annotation, Spring Data also supports integration with the
-QueryDSL library. With Query DSL in support in place we can query by any combination of properties without 
-having to write any query methods. 
-
-`Example`
-
-##### Spring Data Web Integration and QueryDSL
-
-The Spring data web integration allows us to use this QueryDSL functionality in Controllers
-without us having to write any code. We can call the `/search` endpoint on our Customers Controller with any combination of parameters 
-(note on the following we do a 'like' look up on Surname via the customization in the `CustomerRepository` class).
-
-```
-http://localhost:8080/customers?surname=Ja&address.town=Edinburgh&address.town=Glasgow&sort=address.desc&sort=forename&page=1&size=10
-```
-
-##### Exposing Model directly i.e. without DTO and associated mappings
-
-The sample controllers are returning Entity classes directly rather than DTO classes. There is
-nothing in this sample project that would prevent DTOs being returned however that obviously requires the creation
-of a bunch of DTO classes (which typically largely duplicate the domain model) and associated 2-way mappers. 
-
-As alternative I have used the concept of Jackson's JsonView together with some Jackson mix-in classes that allow us 
-to control  the JSON representation of the Entity. With such an approach then we can separate the model from it's JSON 
-representation without the duplicate DTO classes and associated data mappers.  
+The application will create and populate an in-memory database. Edit application properties to switch to mysql.
 
 ___
 ### Functionality on data-rest branch:
 ___
 
-While the Spring Data project removes much of the boiler plate required at the repository level, we are still
-required to write a lot of pretty similar code at the Controller level. In this sample project for
-example, the Customers contoller needs to be extended to handle PUT/PATCH/DELETE operations and we would
-have to write similar Controller logic for Orders and Products etc. which is all a bit tedious.
-
-The Spring Data Rest extension extends the repository abstraction to the API level by exposing REST endpoints
-for any repositories we wish to expose as REST repositories.
-
-If you switch to this branch and run the application it can be  seen that all of the functionality detailed above is 
-still available however there are no controller classes.
+So we have a fully-featured REST(in the proper sense) API exposed with the following basic end-points:
 
 ```
+http://localhost/customers
+http://localhost/orders
+http://localhost/products
+http://localhost/customers/1
+http://localhost/customers/1/orders
+...etc.
+
+```
+
+
+Some interesting stuff about it:
+
+##### No Spring MVC controllers required to be written. 
+
+End-points for GET/POST/PUT/PATCH/DELETE created automatically created by the framework. So while the Spring Data project itselves removes much of the boiler plate required at the repository level, the REST extension prevents us having to write boilerplate at the Controller level for basic CRUD.
+
+##### Advanced Querying
+
+Using the QueryDsl extension advanced searching, sorting, paging can be executed against the API, again with no code having to be written: there is no query related code (other than some customisation of the bindings) in any of the repositories exposed as REST resources however we can query be any combination of parameters. Examples:
+
+```
+//customers in Edinburgh or Glasgow with surname starting with 'JA'
 http://localhost:8080/customers?surname=Ja&address.town=Edinburgh&address.town=Glasgow&sort=address.desc&sort=forename
-http://localhost:8080/customers
-http://localhost:8080/customers/1/orders
-http://localhost:8080/orders/
-http://localhost:8080/products
+
+//customers in Glasgow who have placed an order since the specified date.
+http://localhost:8080/customers?address.town=Glasgow&lastOrderDate=01/09/2017&sort=lastOrderDate&page=1&size=10 
+
+You can query and sort on any combination of the parameters exposed for a Customer
+
 ```
 
-In addition to searching we also have automatically generated end-points for POST/PUT/PATCH/DELETE for each of our entities.
+##### No DTO model
 
-`attach postman collection`
+We are exposing the model however we can  control what is exposed. So rather than writing a whole DTO layer which 95% mirrors the domain model plus a set of 2 way mapping simple expose the Model and control what is exposed via standard Jackson annotations plus Spring Data projections.
 
-Some Notes on Spring Data Rest
+See CustomerMixin.class, OrderMixin.class which allow us to specify serialization/deserialization behaviour for the model (such annotations can also be placed directly on the entity however 'pollutes' the domain model with JSON meta-data).
 
-- HATEOS
-- Event Listeners
-etc.
+The concept on Spring Data projections allows us to request different views of the data simply by creating an Interface definition:
+
+```
+Projection can be applied to a resource or collection of resources regardless of how it is requested.
+
+e.g.
+
+http://localhost:8080/customers?projection=summary
+http://localhost:8080/customers/1?projection=summary
+http://localhost:8080/orders/1/customer?projection=summary
+http://localhost:8080/customers?address.town&projection=summary
+
+```
+
+##### Additional Comments:
+
++ Not an all or nothing approach. Can obviously also use standard Spring MVC controllers for non-resource based operations.
+
