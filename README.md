@@ -12,7 +12,7 @@ mvn spring-boot:run
 
 The application will create and populate an in-memory database. Edit application properties to switch to mysql.
 
-IO have been lazy and used Lombok for some stuff so if you want to run via your IDE you'll need the plugin.
+I have been lazy and used Lombok for some stuff so if you want to run via your IDE you'll need the plugin.
 
 Springfox support for Spring Boot 2 looks to be a work in progress. The application does however bundle the HAL browser which is available at:
 
