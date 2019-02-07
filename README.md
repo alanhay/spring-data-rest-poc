@@ -5,11 +5,20 @@ Sample project to demonstrate some Spring Data functionality.
 
 ```
 git clone git@bitbucket.org:qsengineers/hack-daze-spring-data.git
+git checkout -b data-rest
 cd ${clone_directory}
 mvn spring-boot:run
 ```
 
 The application will create and populate an in-memory database. Edit application properties to switch to mysql.
+
+IO have been lazy and used Lombok for some stuff so if you want to run via your IDE you'll need the plugin.
+
+Springfox support for Spring Boot 2 looks to be a work in progress. The application does however bundle the HAL browser which is available at:
+
+```
+http://localhost:8080/
+```
 
 ___
 ### Functionality on data-rest branch:
@@ -26,7 +35,6 @@ http://localhost/customers/1/orders
 ...etc.
 
 ```
-
 
 Some interesting stuff about it:
 
@@ -72,4 +80,8 @@ http://localhost:8080/customers?address.town&projection=summary
 ##### Additional Comments:
 
 + Not an all or nothing approach. Can obviously also use standard Spring MVC controllers for non-resource based operations.
++ The QueryDSL stuff can be used in standard Java code: `Customer c = repo.findOne(q.forename.eq("X").or(q.forename.eq("y")).and(q.address.town="z"));`
++ The QueryDSL HTTP bindings can also be used in standard SPring MVC controllers.
+
+
 
