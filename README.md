@@ -5,8 +5,8 @@ Sample project to demonstrate some Spring Data functionality.
 
 ```
 git clone git@bitbucket.org:qsengineers/hack-daze-spring-data.git
-git checkout -b data-rest
-cd ${clone_directory}
+cd hack-daze-spring-data
+git fetch && git checkout data-rest
 mvn spring-boot:run
 ```
 
