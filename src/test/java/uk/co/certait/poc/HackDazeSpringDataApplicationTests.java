@@ -1,4 +1,4 @@
-package com.qikserve.hackdazespringdata;
+package uk.co.certait.poc;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
