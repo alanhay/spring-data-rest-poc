@@ -90,6 +90,7 @@ See the sample JSON files in the folder sample-requests. These can fired to the 
 + Not an all or nothing approach. Can obviously also use standard Spring MVC controllers for non-resource based operations.
 + The QueryDSL stuff can be used in standard Java code: `Customer c = repo.findOne(q.forename.eq("X").or(q.forename.eq("y")).and(q.address.town="z"));`
 + The QueryDSL HTTP bindings can also be used in standard SPring MVC controllers.
++ I have not yet added a Controller advice to translate JSR-303/330 validation errors into something more client friendly.
 
 
 
