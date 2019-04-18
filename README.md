@@ -76,6 +76,15 @@ http://localhost:8080/customers?address.town&projection=summary
 
 ```
 
+##### Posting Data
+
+See the sample JSON files in the folder sample-requests. These can fired to the API using postman.
+
++ add-customer-json POST to http://localhost:8080/customers
++ add-order-json POST to http://localhost:8080/orders
++ patch-customer-json PATCH to http://localhost:8080/customers
+
+
 ##### Additional Comments:
 
 + Not an all or nothing approach. Can obviously also use standard Spring MVC controllers for non-resource based operations.
