@@ -4,24 +4,23 @@ Sample project to demonstrate some Spring Data functionality.
 
 
 ```
-git clone git@bitbucket.org:qsengineers/hack-daze-spring-data.git
-cd hack-daze-spring-data
-git fetch && git checkout data-rest
+git clone https://github.com/alanhay/spring-data-rest-poc.git
+cd spring-data-rest-poc
 mvn spring-boot:run
 ```
 
-The application will create and populate an in-memory database. Edit application properties to switch to mysql.
+The application will create and populate an HSQL in-memory database. Edit application properties to switch to mysql.
 
 I have been lazy and used Lombok for some stuff so if you want to run via your IDE you'll need the plugin.
 
-Springfox support for Spring Boot 2 looks to be a work in progress. The application does however bundle the HAL browser which is available at:
+Springfox support for Spring Boot 2 looks to be a work in progress so there are no Swagger docs. The application does however bundle the HAL browser which is available at:
 
 ```
 http://localhost:8080/
 ```
 
 ___
-### Functionality on data-rest branch:
+### Basic Functionality
 ___
 
 So we have a fully-featured REST(in the proper sense) API exposed with the following basic end-points:
