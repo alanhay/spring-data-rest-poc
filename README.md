@@ -47,7 +47,7 @@ Using the QueryDsl extension advanced searching, sorting, paging can be executed
 
 ```
 //customers in Edinburgh or Glasgow with surname starting with 'JA'
-http://localhost:8080/customers?surname=Ja&address.town=Edinburgh&address.town=Glasgow&sort=address.desc&sort=forename
+http://localhost:8080/customers?surname=J&address.town=Edinburgh&address.town=Glasgow&sort=surname,desc&sort=forename
 
 //customers in Glasgow who have placed an order since the specified date.
 http://localhost:8080/customers?address.town=Glasgow&lastOrderDate=01/09/2017&sort=lastOrderDate&page=1&size=10 
