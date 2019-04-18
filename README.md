@@ -1,6 +1,6 @@
 ## Overview
 
-Sample project to demonstrate some Spring Data functionality.
+Sample project to demonstrate a REST API built using the Spring Data Rest module. Exposes a fully featured REST API with having to write controller end-points for boiler-plate operations (GET/POST etc.). 
 
 
 ```
